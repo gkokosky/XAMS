@@ -28,9 +28,9 @@ def maak_data(file):
     return x_nieuw, y_nieuw
 
 
-x_null, y_null = maak_data("/home/gideon/Documents/Research Practicum/XAMS_null.dat")
+x_null, y_null = maak_data("XAMS_null.dat")
 
-x_vol, y_vol = maak_data("/home/gideon/Documents/Research Practicum/XAMS_volume.dat")
+x_vol, y_vol = maak_data("XAMS_volume.dat")
 
 plt.figure()
 plt.plot(x_null, y_null)
