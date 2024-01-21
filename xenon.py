@@ -42,15 +42,9 @@ plt.title("vol")
 
 y_res = np.array(y_vol) - np.array(y_null)
 
-plt.figure()
-plt.bar(x_vol, y_res)
-plt.xlim(120, 150)
-plt.ylim(0, 0.3e-9)
-plt.xlabel("mass (u)")
-plt.ylabel("prominence")
 
-y_crop = y_res[120:150]
-x_crop = x_vol[120:150]
+y_crop = y_res[50:150]
+x_crop = x_vol[50:150]
 
 y_min = 7.4e-13
 
@@ -67,5 +61,17 @@ print(y_sum)
 
 y_percentage = (np.array(y_peaks) / y_sum) * 100
 
+x_expected = [124, 128, 129, 130, 131, 132, 134, 136]
+y_expected = np.array([9.52e-4, 0.0191, 0.264, 0.041, 0.212, 0.269, 0.104, 0.089]) * 100
+
+
 for i in range(len(y_peaks)):
     print(f"mass: {x_peaks[i]}, prominence: {y_percentage[i]} %")
+
+plt.figure()
+plt.plot(x_peaks, y_percentage, "o", alpha=0.5, color="red", label="found values")
+plt.bar(x_expected, y_expected, alpha=0.5, label="expected values")
+plt.legend()
+plt.xlim(60, 75)
+plt.xlabel("mass (u)")
+plt.ylabel("abundance (%)")
