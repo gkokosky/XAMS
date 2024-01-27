@@ -28,13 +28,35 @@ H_2_O = bestand.get_data("18_amu")
 # plt.yscale('log')
 # plt.legend()
 
-bestand2 = GetData("19january.dat")
-t_twee = bestand2.get_data("Time Relative (sec)")
-O_2_twee = bestand2.get_data("32_amu")
-O_twee = bestand2.get_data("16_amu")
+# bestand2 = GetData("19january.dat")
+# t_twee = bestand2.get_data("Time Relative (sec)")
+# O_2_twee = bestand2.get_data("32_amu")
+# O_twee = bestand2.get_data("16_amu")
 
-plt.plot(t, O_2, "o")
-plt.plot(t_twee, O_2_twee, "o")
+# plt.plot(t, O_2, "o")
+# plt.plot(t_twee, O_2_twee, "o")
 
 
-plt.xlim(0, max(t_twee))
+# plt.xlim(0, max(t_twee))
+
+x = []
+y = []
+for i in range(1, 40):
+    
+    x.append(i)
+    y.append(bestand.get_data(f'{i}_amu')[100])
+    
+y_percentage = (np.array(y) / np.sum(y)) * 100
+plt.figure(dpi=500)
+plt.plot(x,y_percentage, 'o')
+plt.xlim(0,30)
+plt.ylim(0,80)
+plt.yticks([0, 20, 40, 60, 80], fontsize=15)
+plt.yticks([10,30,50,70], minor=True, fontsize=10)
+plt.xticks([0,5,10,15,20,25,30], fontsize=15)
+plt.xticks([i for i in range(0,31)], minor=True)
+plt.xlabel('mass (amu)', fontsize=15)
+plt.ylabel('relative abundance (%)', fontsize=15)
+
+    
+

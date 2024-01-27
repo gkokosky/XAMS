@@ -35,8 +35,8 @@ x_vol, y_vol = maak_data("XAMS_volume.dat")
 y_res = np.array(y_vol) - np.array(y_null)
 
 
-y_crop = np.array(y_res[50:150])
-x_crop = np.array(x_vol[50:150])
+y_crop = np.array(y_res[120:150])
+x_crop = np.array(x_vol[120:150])
 
 y_min = 7.4e-14
 
@@ -49,34 +49,33 @@ y_peaks = y_crop[y_filter]
 x_expected = np.array([124, 128, 129, 130, 131, 132, 134, 136])
 y_expected = np.array([9.52e-4, 0.0191, 0.264, 0.041, 0.212, 0.269, 0.104, 0.089]) * 100
 
-x_even = []
-x_odd = []
-x_half = []
-for i in x_expected:
+# x_even = []
+# x_odd = []
+# x_half = []
+# for i in x_expected:
     
-    if i % 2 == 0:
+#     if i % 2 == 0:
         
-        x_even.append(i)
-        x_half.append(i/2)
-    else:
-        x_odd.append(i)
+#         x_even.append(i)
+#         x_half.append(i/2)
+#     else:
+#         x_odd.append(i)
 
-y_comp = []
-for i in range(len(x_peaks)):
+# y_comp = []
+# for i in range(len(x_peaks)):
     
-    if x_peaks[i] in x_half:
-        print(x_peaks[i])
-        y_comp.append(y_peaks[i] + y_peaks[2 * i])        
+#     if x_peaks[i] in x_half:
+#         print(x_peaks[i])
+#         y_comp.append(y_peaks[i] + y_peaks[2 * i])        
     
-y_percentage = (np.array(y_comp) / np.sum(y_comp)) * 100
+# y_percentage = (np.array(y_comp) / np.sum(y_comp)) * 100
 
-plt.figure()
+print(y_peaks)
+y_percentage = (np.array(y_peaks) / np.sum(y_peaks)) * 100
+plt.figure(figsize=(8,6), dpi=500)
 plt.bar(x_expected, y_expected)
-plt.plot(x_even, y_percentage, 'o', color='red')  
-
-# plt.figure()
-# plt.bar(x_expected, y_expected)
-# plt.xlabel('mass (amu)')
-# plt.ylabel('relative abundance (%)')
-# plt.plot(x_peaks, y_percentage, 'o', color='red')
-
+plt.plot(x_peaks, y_percentage, 'o', color='red')
+plt.xticks(fontsize=15)
+plt.yticks(fontsize=15)
+plt.xlabel('mass (amu)', fontsize=15)
+plt.ylabel('relative abundance (%)', fontsize=15)
